@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 public class RegisterPage {
     WebDriver driver;
-    By tittleRegisterFormClass = By.className("tittle");
-    By firstNameFieldId = By.id("customer.firstname");
+    By tittleRegisterFormXpath = By.xpath("//*[@id=\"rightPanel\"]/h1");
+    By firstNameFieldId = By.id("customer.firstName");
     By lastNameFieldId = By.id("customer.lastName");
     By addressfieldId = By.id("customer.address.street");
     By cityFieldId = By.id("customer.address.city");
@@ -19,17 +19,34 @@ public class RegisterPage {
     By ssnFieldId = By.id("customer.ssn");
     By usernameFieldId = By.id("customer.username");
     By passwordFieldId = By.id("customer.password");
-    By registerBtmXpath = By.xpath("customer.password");
+    By passwordConfirmFieldId = By.id("repeatedPassword");
+    By registerBtmXpath = By.xpath("//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input");
+
+    private By[] register = {firstNameFieldId,
+            lastNameFieldId,
+            addressfieldId,
+            cityFieldId,
+            stateFieldId,
+            zipCodeFieldId,
+            phoneFieldId,
+            ssnFieldId,
+            usernameFieldId,
+            passwordFieldId};
 
     public RegisterPage(WebDriver driver){
         this.driver = driver;
     }
 
     public void isDisplayedTittleFormRegister(){
-        driver.findElement(tittleRegisterFormClass).isDisplayed();
+        driver.findElement(tittleRegisterFormXpath).isDisplayed();
     }
 
-    public void registerUser(String firstName,String lastName,String address,St){
-
+    public void registerUser(String[] register){
+        for (int i=0;i<this.register.length;i++){
+            driver.findElement((this.register[i])).clear();
+            driver.findElement(this.register[i]).sendKeys(register[i]);
+        }
+        driver.findElement(passwordConfirmFieldId).sendKeys(register[register.length-1]);
+        driver.findElement(registerBtmXpath).click();
     }
 }
