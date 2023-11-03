@@ -27,7 +27,7 @@ public class Test {
     }
     @After
     public void tearDown(){
-        driver.close();
+        driver.quit();
     }
     @org.junit.Test
     public void testUp(){
