@@ -12,7 +12,7 @@ public class Test {
     @Before
     public void setUp(){
         driver= new ChromeDriver();
-        System.setProperty("webdriver.chrome.driver","./src/driver/driver119/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","./src/driver/chromedriver.exe");
         driver.get("https://www.demoblaze.com");
     }
     @After
